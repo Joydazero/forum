@@ -5,7 +5,8 @@ import DetailLink from "./DetailLink"
 type listResultProps = {
     _id: string,
     title: string,
-    content: string
+    content: string,
+    createdAt?: Date
 }
 export default async function List() {
     const db = (await connectDB).db('forum')
@@ -17,7 +18,7 @@ export default async function List() {
                     <div className="list-item">
                         <Link href={`/detail/${box._id.toString()}`}> <h4>{box.title}</h4>
                         </Link>
-                        <p>1월 1일</p>
+                        <p>{box.createdAt ? new Date(box.createdAt).toLocaleDateString('ko-KR') : '날짜 없음'}</p>
                         <DetailLink />
                     </div>
                 </div>
