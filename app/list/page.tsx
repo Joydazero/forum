@@ -1,4 +1,5 @@
 import { connectDB } from "@/util/database"
+import Link from "next/link"
 
 type listResultProps = {
     _id: string,
@@ -13,7 +14,8 @@ export default async function List() {
             {listResult.map((box) => (
                 <div className="list-bg" key={box._id}>
                     <div className="list-item">
-                        <h4>{box.title}</h4>
+                        <Link href={`/detail/${box._id.toString()}`}> <h4>{box.title}</h4>
+                        </Link>
                         <p>{box.content}</p>
                     </div>
                 </div>
