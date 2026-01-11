@@ -5,7 +5,7 @@ export default function DetailLink() {
     const router = useRouter()
     return (
         <>
-        <button onClick={()=>{ router.push('/')}}>버튼</button>
+        <button onClick={()=>{ router.back()}}>버튼</button>
         </>
     )
 }
