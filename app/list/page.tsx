@@ -17,12 +17,12 @@ export default async function List() {
                 <div className="list-bg" key={box._id}>
                     <div className="list-item">
                         <Link href={`/detail/${box._id.toString()}`}> <h4>{box.title}</h4>
-                        </Link>
+                        </Link>                        
                         <p>{box.createdAt ? new Date(box.createdAt).toLocaleDateString('ko-KR') : '날짜 없음'}</p>
-                        <DetailLink />
+                       <Link href={`/edit/${box._id.toString()}`} className="rounded-[5px] bg-green-900 text-white text-sm px-2 py-1">수정</Link>
                     </div>
                 </div>
-            ))}
+            ))}            
         </div>
     )
 }

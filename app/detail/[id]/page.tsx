@@ -1,5 +1,6 @@
 import { connectDB } from "@/util/database"
 import { ObjectId } from "mongodb";
+import PrevLink from "./PrevLink";
 
 export default async function Detail(props: { params: Promise<{ id: string }> }) {
         const params = await props.params
@@ -14,10 +15,11 @@ export default async function Detail(props: { params: Promise<{ id: string }> })
         console.log(params.id);
         
         return (
-        <div>
+        <div className="p-5">
             <h4 className="title">상세페이지</h4>
-            <h4 className="font-bold text-xl">{detailResult?.title}</h4>
-            <div>{detailResult?.content}</div>
+            <h4 className="font-bold text-xl p-2.5">{detailResult?.title}</h4>
+            <div className="p-2.5">{detailResult?.content}</div>
+            <PrevLink/>
         </div>
         )
     }

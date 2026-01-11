@@ -27,22 +27,24 @@ export default function WritePage() {
   return (
     <div>
       <h1>글쓰기</h1>
-      <input 
-        type="text" 
-        placeholder="제목" 
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <input type="text" placeholder='제목을 작성해주세요' value={title}
-      onChange={(e) => setTitle(e.target.value)} />
-      <br />
-      <textarea 
-        placeholder="내용" 
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-      />
-      <br />
-      <button onClick={handleSubmit}>저장</button>
+      <form onSubmit={handleSubmit}>
+        <input 
+          type="text" 
+          placeholder="제목" 
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <input type="text" placeholder='제목을 작성해주세요' value={title}
+        onChange={(e) => setTitle(e.target.value)} />
+        <br />
+        <textarea 
+          placeholder="내용" 
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+        />
+        <br />
+        <button type="submit">저장</button>
+      </form>
     </div>
   )
 }
