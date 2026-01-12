@@ -1,4 +1,3 @@
-import { connectDB } from "@/util/database"
 import Link from "next/link"
 import DeleteButton from "./DeleteButton"
 
@@ -11,11 +10,12 @@ type listResultProps = {
     createdAt?: Date
 }
 
-export default async function List({_id
-} : {_id: string}) {
-     const db = (await connectDB).db('forum')
-     const listResult = await db.collection<listResultProps>('post').find().toArray()
-
+export default async function List() {
+    // 개발/배포 환경 자동 대응
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'
+    
+    const response = await fetch(`${API_URL}/api/board`, { next: { revalidate: 60 } })
+    const listResult: listResultProps[] = await response.json()
   
     return (
         <div>
