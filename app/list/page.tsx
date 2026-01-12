@@ -2,8 +2,6 @@ import { connectDB } from "@/util/database"
 import Link from "next/link"
 import DeleteButton from "./DeleteButton"
 
-
-
 type listResultProps = {
     _id: string,
     title: string,

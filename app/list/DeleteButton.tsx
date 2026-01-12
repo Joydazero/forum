@@ -5,7 +5,9 @@ import { useRouter } from 'next/navigation'
 export default function DeleteButton({ id }: { id: string }) {
     const router = useRouter()
     
-    const handleDeleteArticle = async () => {
+    const handleDeleteArticle = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        const target = e.currentTarget.parentElement  // 버튼의 부모 요소 저장
+        
         const response = await fetch('/api/test', {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
@@ -15,8 +17,17 @@ export default function DeleteButton({ id }: { id: string }) {
         console.log(result)
         
         if (result.deletedCount) {
-            alert('삭제 완료!')
-            router.refresh()  // 서버 컴포넌트 새로고침 (페이지 전체 리로드 X)
+            // 1. 애니메이션 실행
+            if (target) {
+                target.style.transition = 'opacity 0.5s'
+                target.style.opacity = '0'
+                
+                // 2. 애니메이션 끝나면 숨기고 새로고침
+                setTimeout(() => {
+                    target.style.display = 'none'
+                    router.refresh()
+                }, 500)
+            }
         }
     }
     
@@ -27,5 +38,6 @@ export default function DeleteButton({ id }: { id: string }) {
         >
             삭제
         </button>
+         
     )
 }
