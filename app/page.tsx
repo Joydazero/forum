@@ -7,7 +7,7 @@ export default async function Home() {
   console.log('result:', result); // 디버깅용
   return (
     <main>
-      {result.length > 0 ? result.map((post) => <div key={post._id}>{post.title}</div>) : '게시글이 없습니다'}
+      {result.length > 0 ? result.map((post) => <div key={post._id.toString()}>{post.title}</div>) : '게시글이 없습니다'}
     </main>
   );
 }
