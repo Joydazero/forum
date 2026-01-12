@@ -39,3 +39,11 @@ export async function PATCH(request: Request) {
   
   return Response.json({ message: "수정완료", modifiedCount: result.modifiedCount });
 }
+export async function DELETE(request: Request) {
+  const client = await connectDB
+  const db = client.db("forum")
+  const body = await request.json()
+
+  const result = await db.collection("post").deleteOne({'_id': new ObjectId(body.id)})
+  return Response.json({message:'삭제완료', deletedCount: result.deletedCount})
+}

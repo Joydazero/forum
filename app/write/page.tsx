@@ -26,24 +26,22 @@ export default function WritePage() {
 
   return (
     <div>
-      <h1>글쓰기</h1>
+      <h1 className="title">글쓰기</h1>
       <form onSubmit={handleSubmit}>
-        <input 
-          type="text" 
-          placeholder="제목" 
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+         <div className='p-2.5 m-2.5 box-border'>
         <input type="text" placeholder='제목을 작성해주세요' value={title}
+        className='border border-[#ccc] rounded-[5px] p-1.5 w-full box-border'
         onChange={(e) => setTitle(e.target.value)} />
         <br />
         <textarea 
           placeholder="내용" 
           value={content}
           onChange={(e) => setContent(e.target.value)}
+          className='border border-[#ccc] rounded-[5px] p-1.5 w-full box-border mt-5'
         />
         <br />
-        <button type="submit">저장</button>
+        </div>
+        <button type="submit" className='mx-5 my-3 rounded-md bg-[#e5e5e5] flex px-3 py-2 text-base font-medium cursor-pointer border border-[#bbbbbb]'>저장</button>
       </form>
     </div>
   )
