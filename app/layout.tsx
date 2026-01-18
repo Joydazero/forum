@@ -31,9 +31,10 @@ export default async function RootLayout({
   console.log(session);
   
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
       >
         <nav className="navbar">
           <Link href='/' className="logo">forum</Link>

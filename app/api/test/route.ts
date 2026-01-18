@@ -1,5 +1,7 @@
 import { connectDB } from "@/util/database";
 import { ObjectId } from "mongodb";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/route";
 
 export async function GET() {
   const client = await connectDB;
@@ -12,18 +14,22 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  const session = await getServerSession(authOptions);
   const client = await connectDB;
   const db = client.db("forum");
   const body = await request.json();
+ 
   
-  // 작성 날짜 추가
+  // 작성 날짜 + 작성자 추가
   const dataWithDate = {
     ...body,
+    author: session?.user?.email || 'anonymous',
     createdAt: new Date()
   };
-  
+
   const result = await db.collection("post").insertOne(dataWithDate);
   return Response.json({ message: "저장완료", insertedId: result.insertedId });
+ 
 }
 
 

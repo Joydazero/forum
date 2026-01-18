@@ -1,8 +1,10 @@
 'use client'
 
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function RegisterForm() {
+  const router = useRouter()
      type DataProps = {
        name: string;
        email: string;
