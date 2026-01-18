@@ -1,42 +1,42 @@
 'use client'
 
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function RegisterForm() {
   const router = useRouter()
-     type DataProps = {
-       name: string;
-       email: string;
-       password: string;
-     };
-    const [regiForm, setRegiForm] = useState<DataProps>({
-      name: "",
-      email: "",
-      password: "",
-    });
-    const handleChange = ( e: React.ChangeEvent<HTMLInputElement>) =>{
-        const { name, value } = e.target;
-        setRegiForm((prev) => ({...prev, [name]:value}))
-    }
-   
-    const handleSendDataSignUp = async (
-      e: React.FormEvent<HTMLFormElement>
-    ) => {
-      e.preventDefault();
-      const response = await fetch("/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(regiForm),
-      });
+  type DataProps = {
+    name: string;
+    email: string;
+    password: string;
+  };
+  const [regiForm, setRegiForm] = useState<DataProps>({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setRegiForm((prev) => ({ ...prev, [name]: value }))
+  }
 
-      if (response.ok) {
-        alert("회원가입 성공!");
-        router.push("/api/auth/signin"); // 로그인 페이지로 이동
-      }
-    };
+  const handleSendDataSignUp = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+    e.preventDefault();
+    const response = await fetch("/api/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(regiForm),
+    });
+
+    if (response.ok) {
+      alert("회원가입 성공!");
+      router.push("/api/auth/signin"); // 로그인 페이지로 이동
+    }
+  };
   return (
     <div>
       <form
